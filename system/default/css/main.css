@@ -23,11 +23,6 @@
   margin: 5px;
   cursor: pointer;
 }
-.object {
-  padding: 10px;
-  background-color: #ddd;
-  border: 1px solid #fff;
-}
 .object img {
   width: 100%;
 }

@@ -4,10 +4,10 @@
 class systemSetting
 {
 
-    protected $dsn = "mysql:host=localhost;dbname=reimpex-messenburg;port=3306;charset:utf8";
+    protected $dsn = "mysql:host=localhost;dbname=reimpex;port=3306;charset:utf8";
 
-    protected $user = 'reimpex-messenburg';
+    protected $user = 'reimpex';
 
-    protected $password = 'qWS3FhpqGQNHmkvk';
+    protected $password = 'BfRxd13R1Af9xKM9';
 
 }

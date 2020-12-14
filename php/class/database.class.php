@@ -61,7 +61,7 @@ class Database extends systemSetting
                 break;
 
             default:
-                var_dump('Wrong binding type: '.$type);
+                $this->error('Error in bindType(), type of parameter is wrong', $type);
                 exit();
 
         }
@@ -69,16 +69,60 @@ class Database extends systemSetting
         return $typeReturn;
 
     }
+    private function error($mainInfo, $mainInfoSupplement = false, $supplementInfo = false) {
+
+        echo '<div style="background-color: #fff; padding: 10px; border: 5px solid #aaa; margin-top: 10px">';
+
+            echo '<div style="color: #000; font-family: Courier; padding: 10px; background-color: #eee; font-weight: bold">'.$mainInfo.': '.__LINE__.'</div>';
+
+            if($mainInfoSupplement)
+                echo '<p style="color: #bd3535; font-family: Courier">'.$mainInfoSupplement.'</p>';
+
+            if($supplementInfo)
+                var_dump($supplementInfo);
+
+            $debugArray = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+
+            foreach ($debugArray as $i => $d) {
+
+                echo '<br><strong>'.$i.':</strong>';
+                echo '<div style="padding: 10px; border: 1px solid red">';
+
+                    var_dump($d);
+
+                echo '</div>';
+
+
+
+            }
+
+        echo '</div>';
+
+        exit();
+
+    }
 
     public function prepare($sql = false) {
 
-        if($sql and $this->pdo) {
+        if ($this->pdo) {
 
-            $this->pdo->query("set names 'utf8'");
+            if ($sql) {
 
-            $this->sql = $sql;
+                $this->pdo->query("set names 'utf8'");
 
-            $this->prepare = $this->pdo->prepare($this->sql);
+                $this->sql = $sql;
+
+                $this->prepare = $this->pdo->prepare($this->sql);
+
+            } else {
+
+                $this->error('Error in prepare(), sql query is no set');
+
+            }
+
+        } else {
+
+            $this->error('Error in prepare(), connection with database is not established');
 
         }
 
@@ -100,17 +144,13 @@ class Database extends systemSetting
 
             }else{
 
-                var_dump('SQL query variables do not match: '.$this->sql);
-
-                exit();
+                $this->error('Error in bind(), sql query is set, prepare is set, number parameters in bind not match in parameters array', $this->sql, $this->parameter);
 
             }
 
         }else{
 
-            var_dump('Bind parameter must exists: '.$this->sql);
-
-            exit();
+            $this->error('Error in bind(), sql query is set, prepare is set, parameters are not defined, but in sql query are variables with ":"', $this->sql);
 
         }
 
@@ -157,8 +197,6 @@ class Database extends systemSetting
                     //Return "false" when count of row is 0
                     return $displayReturn;
 
-
-
                 //insert, update, delete query
                 }else{
 
@@ -178,13 +216,8 @@ class Database extends systemSetting
 
                 //Remove in "production environment"
 
-                var_dump('Error execute() in run()');
+                $this->error('Error in run(), sql query is set, prepare is set, parameters match, error is probably in query or in parameters (type, empty, etc.): ', $this->sql, $this->parameter);
 
-                echo $this->sql.'<br>';
-
-                var_dump($this->parameter);
-
-                exit();
             }
 
         }else{
