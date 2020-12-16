@@ -41,4 +41,23 @@
   z-index: 1;
   color: #333;
 }
+.top {
+  padding: 10px;
+}
+.top .customer-link {
+  border-bottom: 2px solid #065ea7;
+}
+.top .customer-link a,
+.top .customer-link i {
+  color: #333;
+}
+.menu {
+  background-color: #f9f9f9;
+}
+.im-content {
+  background-color: #eee;
+}
+.im-content .content .object {
+  border: 10px solid #f9f9f9;
+}
 /*# sourceMappingURL=main.css.map */
