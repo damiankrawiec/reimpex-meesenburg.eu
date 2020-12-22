@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 22 Gru 2020, 17:28
+-- Czas generowania: 22 Gru 2020, 19:37
 -- Wersja serwera: 5.7.26
 -- Wersja PHP: 7.3.5
 
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `im_label` (
 
 INSERT INTO `im_label` (`label_id`, `name`, `system_name`, `style`, `description`, `date_create`, `date_modify`) VALUES
 (1, 'Ciasteczka', 'cookie', NULL, NULL, '2020-12-14 18:41:18', '2020-12-14 18:41:18'),
-(2, 'Menu', 'menu', NULL, NULL, '2020-12-14 18:56:20', '2020-12-14 18:56:20'),
+(2, 'Menu', 'menu', '', '', '2020-12-14 18:56:20', '2020-12-22 19:49:20'),
 (3, 'Góra', 'top', NULL, NULL, '2020-12-16 15:48:43', '2020-12-16 15:48:43'),
 (4, 'Logo', 'logo', NULL, NULL, '2020-12-16 16:23:53', '2020-12-16 16:23:53'),
 (5, 'Slider', 'slider', NULL, NULL, '2020-12-16 17:02:24', '2020-12-16 17:02:24'),
@@ -238,12 +238,20 @@ CREATE TABLE IF NOT EXISTS `im_label_section` (
   `section` int(11) NOT NULL,
   `class` varchar(256) COLLATE utf8_polish_ci DEFAULT '',
   `class_row` varchar(256) COLLATE utf8_polish_ci DEFAULT '',
+  `class_row_second` varchar(256) COLLATE utf8_polish_ci NOT NULL DEFAULT '',
   `description` text COLLATE utf8_polish_ci,
   `date_create` datetime DEFAULT NULL,
   `date_modify` datetime DEFAULT NULL,
   PRIMARY KEY (`label_section_id`),
   KEY `label_id` (`label_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `im_label_section`
+--
+
+INSERT INTO `im_label_section` (`label_section_id`, `label_id`, `section`, `class`, `class_row`, `class_row_second`, `description`, `date_create`, `date_modify`) VALUES
+(3, 2, 0, '', '', 'justify-content-center', NULL, '2020-12-22 20:34:23', '2020-12-22 20:34:23');
 
 --
 -- Wyzwalacze `im_label_section`
@@ -400,9 +408,9 @@ INSERT INTO `im_object` (`object_id`, `type_id`, `label_id`, `section`, `section
 (3, 3, 3, 1, '<i class=\"fal fa-user-unlock\"></i> strefa klienta', 'Strefa klienta', '', NULL, '', '', '', '', '', '', '', 'customer-link', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 15:50:28', '2020-12-16 16:07:15'),
 (4, 4, 4, 0, '', 'Logo', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'on', 'off', '', '2020-12-16', '2020-12-16 16:26:06', '2020-12-16 16:26:18'),
 (5, 5, 5, 0, '', 'Slider główny', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:05:28', '2020-12-16 17:08:06'),
-(6, 6, 6, 0, '', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-16 17:38:30'),
-(7, 6, 6, 0, '', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-16 17:38:22'),
-(8, 6, 6, 0, '', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-16 17:37:59');
+(6, 6, 6, 1, 'Czytaj więcej', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-22 19:31:40'),
+(7, 6, 6, 1, 'Czytaj więcej', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-22 19:31:46'),
+(8, 6, 6, 1, 'Czytaj więcej', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-22 19:31:53');
 
 --
 -- Wyzwalacze `im_object`
@@ -665,7 +673,7 @@ CREATE TABLE IF NOT EXISTS `im_section_object` (
   PRIMARY KEY (`section_object_id`),
   KEY `section_id` (`section_id`),
   KEY `object_id` (`object_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_section_object`
@@ -677,9 +685,9 @@ INSERT INTO `im_section_object` (`section_object_id`, `section_id`, `object_id`)
 (5, 1, 4),
 (10, 1, 2),
 (12, 1, 5),
-(19, 1, 8),
-(20, 1, 7),
-(21, 1, 6);
+(25, 1, 6),
+(26, 1, 7),
+(27, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -901,7 +909,7 @@ CREATE TABLE IF NOT EXISTS `im_type` (
 
 INSERT INTO `im_type` (`type_id`, `name`, `class`, `status`, `description`, `date_create`, `date_modify`) VALUES
 (1, 'Cookie', 'col-12', 'on', '', '2020-12-14 18:41:34', '2020-12-14 18:41:41'),
-(2, 'Menu', 'col-12', 'on', '', '2020-12-14 18:56:35', '2020-12-14 18:56:56'),
+(2, 'Menu', 'col-12', 'on', '', '2020-12-14 18:56:35', '2020-12-22 19:52:12'),
 (3, 'Link', 'col-12 col-lg-2 offset-lg-10', 'on', 'np. \"strefa klienta\"', '2020-12-16 15:49:49', '2020-12-16 16:11:03'),
 (4, 'Logo', 'col-12 col-lg-2 pt-3', 'on', 'grafika wektorowa - SVG', '2020-12-16 16:23:38', '2020-12-16 16:34:07'),
 (5, 'Slider', 'col-12', 'on', 'slider główny - strona główna', '2020-12-16 17:02:41', '2020-12-16 17:03:13'),
@@ -947,7 +955,7 @@ CREATE TABLE IF NOT EXISTS `im_type_property` (
   PRIMARY KEY (`type_property_id`),
   KEY `type_id` (`type_id`),
   KEY `property_id` (`property_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_type_property`
@@ -955,13 +963,14 @@ CREATE TABLE IF NOT EXISTS `im_type_property` (
 
 INSERT INTO `im_type_property` (`type_property_id`, `type_id`, `property_id`, `class`, `class_field`, `position`, `status`, `description`, `date_create`, `date_modify`) VALUES
 (1, 1, 2, 'col-12', '', 1, 'on', '', '2020-12-14 18:41:52', '2020-12-14 18:52:35'),
-(2, 2, 7, '', 'navbar navbar-expand-lg animated fadeInLeftBig text-uppercase', 1, 'on', '', '2020-12-14 18:57:15', '2020-12-16 16:55:46'),
+(2, 2, 7, '', 'navbar navbar-expand-lg animated fadeInLeftBig text-uppercase', 1, 'on', '', '2020-12-14 18:57:15', '2020-12-22 19:46:29'),
 (3, 3, 5, 'col-12 text-center', '', 1, 'on', '', '2020-12-16 15:50:53', '2020-12-16 16:06:09'),
 (4, 4, 4, 'col-12', '', 1, 'on', '', '2020-12-16 16:25:49', '2020-12-16 16:25:55'),
 (5, 5, 4, 'col-12', '', 1, 'on', '', '2020-12-16 17:03:22', '2020-12-16 17:03:28'),
 (6, 6, 12, 'col-12 text-center mt-1 mb-1', '', 1, 'on', '', '2020-12-16 17:27:41', '2020-12-16 17:38:58'),
 (7, 6, 1, 'col-12 text-center mt-2 mb-2', 'text-uppercase h5', 2, 'on', '', '2020-12-16 17:27:55', '2020-12-16 17:39:58'),
-(8, 6, 2, 'col-12', '', 3, 'on', '', '2020-12-16 17:28:29', '2020-12-16 17:28:37');
+(8, 6, 2, 'col-12', '', 3, 'on', '', '2020-12-16 17:28:29', '2020-12-16 17:28:37'),
+(9, 6, 5, 'col-12 text-center', 'btn btn-danger', 4, 'on', '', '2020-12-22 19:28:08', '2020-12-22 19:28:38');
 
 --
 -- Wyzwalacze `im_type_property`

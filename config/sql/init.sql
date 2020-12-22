@@ -332,6 +332,7 @@ create table im_object (
     position int default 0,
     status varchar(3) default 'on',
     status_copy varchar(3) default 'off',
+    status_free varchar(3) default 'off',
     description text collate utf8_polish_ci default '',-- description, management
     date varchar(32) collate utf8_polish_ci default '',-- date to display
     date_create datetime,-- create time
@@ -429,6 +430,7 @@ create table im_label_section (
     section int not null,-- section id, but it is not key (relationship)
     class varchar(256) collate utf8_polish_ci default '',-- class of label (may be in section)
     class_row varchar(256) collate utf8_polish_ci default '',-- class of first row in label (may be in section)
+    class_row_second varchar(256) collate utf8_polish_ci default '',-- class of second row in label (may be in section)
     description text collate utf8_polish_ci default '',-- description, management
     date_create datetime,-- create time
     date_modify datetime,-- last modification time
@@ -959,3 +961,4 @@ insert into im_setting values (null, 'Style map', 'map-style', '', '', null, nul
 insert into im_setting values (null, 'Footer class', 'class-footer', 'animated slideInUp', '', null, null);
 insert into im_setting values (null, 'Loading page', 'loading-page', 'background: #000;|top:30%;|color:#fff;font-size: 150px;|fad fa-spinner-third fa-spin|fadeOutUp|1000', 'Background style, icon box style, icon style, icon class, animation, visible time', null, null);
 insert into im_setting values (null, 'Debug', 'debug', 'disable', 'enable/disable (status)', null, null);
+insert into im_setting values (null, 'Map zoom', 'zoom-map', '16', '15, 16, 17 - probably will be ok', null, null);
