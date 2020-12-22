@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 16 Gru 2020, 17:07
+-- Czas generowania: 22 Gru 2020, 17:28
 -- Wersja serwera: 5.7.26
 -- Wersja PHP: 7.3.5
 
@@ -380,6 +380,7 @@ CREATE TABLE IF NOT EXISTS `im_object` (
   `position` int(11) DEFAULT '0',
   `status` varchar(3) COLLATE utf8_polish_ci DEFAULT 'on',
   `status_copy` varchar(3) COLLATE utf8_polish_ci DEFAULT 'off',
+  `status_free` varchar(3) COLLATE utf8_polish_ci NOT NULL DEFAULT 'off',
   `description` text COLLATE utf8_polish_ci,
   `date` varchar(32) COLLATE utf8_polish_ci DEFAULT '',
   `date_create` datetime DEFAULT NULL,
@@ -393,15 +394,15 @@ CREATE TABLE IF NOT EXISTS `im_object` (
 -- Zrzut danych tabeli `im_object`
 --
 
-INSERT INTO `im_object` (`object_id`, `type_id`, `label_id`, `section`, `section_name`, `system_name`, `name`, `content`, `link`, `link_name`, `email`, `form`, `attachment`, `icon`, `map`, `class`, `position`, `status`, `status_copy`, `description`, `date`, `date_create`, `date_modify`) VALUES
-(1, 1, 1, 0, '', 'Okno ciasteczek', '', '<div id=\"cookie\"><i class=\"fad fa-cookie fa-2x float-left m-1\"></i> Przeglądając niniejszy serwis internetowy, akceptujesz pliki cookies zgodnie z ustawieniami przeglądarki <button class=\"btn btn-dark\">OK</button></div>', '', '', '', '', '', '', '', '', 1, 'on', 'off', '', '2020-12-14', '2020-12-14 18:42:28', '2020-12-14 18:43:42'),
-(2, 2, 2, 0, '', 'Menu', '<i class=\"fal fa-bars\"></i><i class=\"fal fa-times im-hide\"></i>', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', '', '2020-12-14', '2020-12-14 18:58:41', '2020-12-16 16:48:09'),
-(3, 3, 3, 1, '<i class=\"fal fa-user-unlock\"></i> strefa klienta', 'Strefa klienta', '', NULL, '', '', '', '', '', '', '', 'customer-link', 1, 'on', 'off', '', '2020-12-16', '2020-12-16 15:50:28', '2020-12-16 16:07:15'),
-(4, 4, 4, 0, '', 'Logo', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'on', '', '2020-12-16', '2020-12-16 16:26:06', '2020-12-16 16:26:18'),
-(5, 5, 5, 0, '', 'Slider główny', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', '', '2020-12-16', '2020-12-16 17:05:28', '2020-12-16 17:08:06'),
-(6, 6, 6, 0, '', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-16 17:38:30'),
-(7, 6, 6, 0, '', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-16 17:38:22'),
-(8, 6, 6, 0, '', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-16 17:37:59');
+INSERT INTO `im_object` (`object_id`, `type_id`, `label_id`, `section`, `section_name`, `system_name`, `name`, `content`, `link`, `link_name`, `email`, `form`, `attachment`, `icon`, `map`, `class`, `position`, `status`, `status_copy`, `status_free`, `description`, `date`, `date_create`, `date_modify`) VALUES
+(1, 1, 1, 0, '', 'Okno ciasteczek', '', '<div id=\"cookie\"><i class=\"fad fa-cookie fa-2x float-left m-1\"></i> Przeglądając niniejszy serwis internetowy, akceptujesz pliki cookies zgodnie z ustawieniami przeglądarki <button class=\"btn btn-dark\">OK</button></div>', '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-14', '2020-12-14 18:42:28', '2020-12-14 18:43:42'),
+(2, 2, 2, 0, '', 'Menu', '<i class=\"fal fa-bars\"></i><i class=\"fal fa-times im-hide\"></i>', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-14', '2020-12-14 18:58:41', '2020-12-16 16:48:09'),
+(3, 3, 3, 1, '<i class=\"fal fa-user-unlock\"></i> strefa klienta', 'Strefa klienta', '', NULL, '', '', '', '', '', '', '', 'customer-link', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 15:50:28', '2020-12-16 16:07:15'),
+(4, 4, 4, 0, '', 'Logo', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'on', 'off', '', '2020-12-16', '2020-12-16 16:26:06', '2020-12-16 16:26:18'),
+(5, 5, 5, 0, '', 'Slider główny', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:05:28', '2020-12-16 17:08:06'),
+(6, 6, 6, 0, '', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-16 17:38:30'),
+(7, 6, 6, 0, '', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-16 17:38:22'),
+(8, 6, 6, 0, '', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-16 17:37:59');
 
 --
 -- Wyzwalacze `im_object`
@@ -696,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `im_setting` (
   `date_create` datetime DEFAULT NULL,
   `date_modify` datetime DEFAULT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_setting`
@@ -712,7 +713,8 @@ INSERT INTO `im_setting` (`setting_id`, `name`, `system_name`, `content`, `descr
 (7, 'Footer class', 'class-footer', 'animated slideInUp', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
 (8, 'Loading page', 'loading-page', 'background: #000;|top:30%;|color:#fff;font-size: 150px;|fad fa-spinner-third fa-spin|fadeOutUp|1000', 'Background style, icon box style, icon style, icon class, animation, visible time', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
 (9, 'Debug', 'debug', 'enable', 'enable/disable (status)', '2020-12-14 18:32:18', '2020-12-14 18:38:55'),
-(10, 'Content class', 'class-content', '', '', '2020-12-16 17:42:45', '2020-12-16 17:49:40');
+(10, 'Content class', 'class-content', '', '', '2020-12-16 17:42:45', '2020-12-16 17:49:40'),
+(11, 'Map zoom', 'zoom-map', '16', '15, 16, 17 - probably will be ok', '2020-12-22 17:58:41', '2020-12-22 17:58:41');
 
 --
 -- Wyzwalacze `im_setting`

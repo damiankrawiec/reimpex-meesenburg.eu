@@ -90,26 +90,10 @@ class ObjectContent extends Language {
         }
 
         //Name of aliases need to be the same as system_name of property fixed to type of object
-        $sql = 'select 
-            o.object_id as id, 
-            o.name as name, 
-            o.date as date, 
-            o.type_id as type, 
-            o.content as content, 
-            o.section as section,
-            o.section_name as section_name, 
-            o.link as link,
-            o.link_name as link_name,
-            o.email as email,
-            o.form as form,
-            o.attachment as attachment, 
-            o.icon as icon,
-            o.map as map';
+        $sql = $this->getObjectSql();
 
         //Field from joining tables
         //if($isParameter) {}
-
-        $sql .= ' from im_object o';
 
         if($isParameter) {
 
@@ -137,6 +121,14 @@ class ObjectContent extends Language {
 
             }
 
+            if(in_array('free', $parameterArray)) {
+
+                $sql .= $this->whereOrAnd($sql);
+
+                $sql .= ' o.status_free = :free';
+
+            }
+
         }
 
         $sql .= $this->whereOrAnd($sql);
@@ -151,6 +143,28 @@ class ObjectContent extends Language {
             $this->db->bind($parameter);
 
         return $this->db->run('all');
+
+    }
+
+    //Field of object in sql query - getObject()
+    private function getObjectSql() {
+
+        return 'select 
+            o.object_id as id, 
+            o.name as name, 
+            o.date as date, 
+            o.type_id as type, 
+            o.content as content, 
+            o.section as section,
+            o.section_name as section_name, 
+            o.link as link,
+            o.link_name as link_name,
+            o.email as email,
+            o.form as form,
+            o.attachment as attachment, 
+            o.icon as icon,
+            o.map as map
+            from im_object o';
 
     }
 
@@ -761,18 +775,37 @@ class ObjectContent extends Language {
 
     public function display($section = false, $label = false, $option = false) {
 
-        if($section and $label) {
+        if($label) {
 
             $this->label = $label;
 
             $parameter = array(
-                array('name' => ':section', 'value' => $section, 'type' => 'int'),
+                array('name' => ':free', 'value' => 'on', 'type' => 'string'),
                 array('name' => ':label', 'value' => $label, 'type' => 'string')
             );
 
-            $objectRecord = $this->getObject($parameter);
+            $objectRecordFree = $this->getObject($parameter);
 
-            if($objectRecord) {
+            $parameter[0]['value'] = 'off';
+            array_push($parameter, array('name' => ':section', 'value' => $section, 'type' => 'int'));
+
+            $objectRecordSection = $this->getObject($parameter);
+
+            $objectRecord = array();
+            if($objectRecordFree) {
+
+                foreach ($objectRecordFree as $orf)
+                    array_push($objectRecord, $orf);
+
+            }
+            if($objectRecordSection) {
+
+                foreach ($objectRecordSection as $ors)
+                    array_push($objectRecord, $ors);
+
+            }
+
+            if(count($objectRecord) > 0) {
 
                 $classLabelDisplay = $classLabelRowDisplay = '';
 
