@@ -51,16 +51,25 @@
 .top .customer-link i {
   color: #333;
 }
+.logo {
+  margin-bottom: -75px;
+}
 .logo .carousel-caption {
   display: none !important;
 }
 .menu {
-  background-color: #f9f9f9;
-}
-.im-content {
   background-color: #eee;
 }
-.im-content .content .object {
-  border: 10px solid #f9f9f9;
+.content-gray {
+  background-color: #c5c7c4;
+}
+.content-top .object {
+  border: 10px solid #c5c7c4;
+}
+.map div[title="map"] {
+  height: 300px;
+}
+.im-footer {
+  color: #fff;
 }
 /*# sourceMappingURL=main.css.map */
