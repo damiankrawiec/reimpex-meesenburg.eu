@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 22 Gru 2020, 19:37
+-- Czas generowania: 22 Gru 2020, 21:14
 -- Wersja serwera: 5.7.26
 -- Wersja PHP: 7.3.5
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `im_image` (
   `date_create` datetime DEFAULT NULL,
   `date_modify` datetime DEFAULT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_image`
@@ -155,7 +155,8 @@ CREATE TABLE IF NOT EXISTS `im_image` (
 INSERT INTO `im_image` (`image_id`, `section`, `name`, `content`, `url`, `link`, `status`, `description`, `date_create`, `date_modify`) VALUES
 (1, 1, 'Logo', NULL, 'logo-reimpex-meesenburg-207766fd1c791b729ae951bd3ce5d4df.svg', '', 'on', NULL, '2020-12-16 16:24:48', '2020-12-16 16:24:48'),
 (2, 0, 'Slider główny', NULL, 'maszyny-off-43bae7a7da03c43be942309faf1567e8.jpg', '', 'on', NULL, '2020-12-16 17:05:08', '2020-12-16 17:05:08'),
-(3, 0, 'Slider główny - biało czarny', NULL, 'maszyny-cb-bd5441c18dc59ec98a8d6cd50a9ad2af.jpg', '', 'on', NULL, '2020-12-16 17:07:54', '2020-12-16 17:07:54');
+(3, 0, 'Slider główny - biało czarny', NULL, 'maszyny-cb-bd5441c18dc59ec98a8d6cd50a9ad2af.jpg', '', 'on', NULL, '2020-12-16 17:07:54', '2020-12-16 17:07:54'),
+(4, 0, 'Promag - szkolenie', NULL, 'promag-szkolenie-blicke-9061de71f0ec462997cc4e6d4f137f6d.jpg', '', 'on', NULL, '2020-12-22 21:15:41', '2020-12-22 21:15:41');
 
 --
 -- Wyzwalacze `im_image`
@@ -192,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `im_label` (
   `date_create` datetime DEFAULT NULL,
   `date_modify` datetime DEFAULT NULL,
   PRIMARY KEY (`label_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_label`
@@ -204,7 +205,11 @@ INSERT INTO `im_label` (`label_id`, `name`, `system_name`, `style`, `description
 (3, 'Góra', 'top', NULL, NULL, '2020-12-16 15:48:43', '2020-12-16 15:48:43'),
 (4, 'Logo', 'logo', NULL, NULL, '2020-12-16 16:23:53', '2020-12-16 16:23:53'),
 (5, 'Slider', 'slider', NULL, NULL, '2020-12-16 17:02:24', '2020-12-16 17:02:24'),
-(6, 'Zawartość', 'content', NULL, NULL, '2020-12-16 17:25:49', '2020-12-16 17:25:49');
+(6, 'Zawartość - środek', 'content-center', '', '', '2020-12-16 17:25:49', '2020-12-22 20:52:57'),
+(7, 'Zawartość - góra', 'content-top', NULL, NULL, '2020-12-22 20:53:19', '2020-12-22 20:53:19'),
+(8, 'Zawartość - dół', 'content-bottom', NULL, NULL, '2020-12-22 20:53:41', '2020-12-22 20:53:41'),
+(9, 'Mapa', 'map', NULL, NULL, '2020-12-22 20:53:54', '2020-12-22 20:53:54'),
+(10, 'Stopka', 'footer', NULL, NULL, '2020-12-22 20:55:59', '2020-12-22 20:55:59');
 
 --
 -- Wyzwalacze `im_label`
@@ -251,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `im_label_section` (
 --
 
 INSERT INTO `im_label_section` (`label_section_id`, `label_id`, `section`, `class`, `class_row`, `class_row_second`, `description`, `date_create`, `date_modify`) VALUES
-(3, 2, 0, '', '', 'justify-content-center', NULL, '2020-12-22 20:34:23', '2020-12-22 20:34:23');
+(3, 2, 0, '', '', 'justify-content-center', 'Środkowanie menu', '2020-12-22 20:34:23', '2020-12-22 20:58:59');
 
 --
 -- Wyzwalacze `im_label_section`
@@ -396,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `im_object` (
   PRIMARY KEY (`object_id`),
   KEY `type_id` (`type_id`),
   KEY `label_id` (`label_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_object`
@@ -408,9 +413,14 @@ INSERT INTO `im_object` (`object_id`, `type_id`, `label_id`, `section`, `section
 (3, 3, 3, 1, '<i class=\"fal fa-user-unlock\"></i> strefa klienta', 'Strefa klienta', '', NULL, '', '', '', '', '', '', '', 'customer-link', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 15:50:28', '2020-12-16 16:07:15'),
 (4, 4, 4, 0, '', 'Logo', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'on', 'off', '', '2020-12-16', '2020-12-16 16:26:06', '2020-12-16 16:26:18'),
 (5, 5, 5, 0, '', 'Slider główny', '', NULL, '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:05:28', '2020-12-16 17:08:06'),
-(6, 6, 6, 1, 'Czytaj więcej', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-22 19:31:40'),
-(7, 6, 6, 1, 'Czytaj więcej', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-22 19:31:46'),
-(8, 6, 6, 1, 'Czytaj więcej', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-22 19:31:53');
+(6, 6, 7, 1, 'Czytaj więcej', 'Certyfikaty', 'Certyfikaty', '<p>Spełnienie wymagań naszych klient&oacute;w oraz dążenie do zwiększenia ich zadowolenia, jak r&oacute;wnież budowanie partnerskiej wsp&oacute;łpracy z dostawcami jest warunkiem trwałego powodzenia naszej Firmy.</p>', '', '', '', '', '', 'fal fa-file-certificate fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:29:02', '2020-12-22 21:07:54'),
+(7, 6, 7, 1, 'Czytaj więcej', 'Dział projektowy', 'Dział projektowy', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-ruler-triangle fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:32:08', '2020-12-22 21:08:00'),
+(8, 6, 7, 1, 'Czytaj więcej', 'Serwis', 'Serwis', '<p>Nasz zesp&oacute;ł stanowią wykwalifikowani konstruktorzy, technolodzy, specjaliści w dziedzinie Lean Manufacturing oraz trener Kaizen. Łączymy wizję wyrobu klienta z naszym doświadczeniem.</p>', '', '', '', '', '', 'fal fa-tools fa-2x', '', '', 1, 'on', 'off', 'off', '', '2020-12-16', '2020-12-16 17:36:01', '2020-12-22 21:08:05'),
+(9, 7, 10, 0, '', 'Stopka', '', '<p>Wszelkie prawa zastrzeżone - 2020 r.</p>', '', '', '', '', '', '', '', 'text-center', 1, 'on', 'off', 'off', '', '2020-12-22', '2020-12-22 20:57:30', '2020-12-22 21:26:41'),
+(10, 8, 9, 0, '', 'Mapa', '', NULL, '', '', '', '', '', '', '51.65198165621338,15.139702398884488', '', 1, 'on', 'off', 'off', '', '2020-12-22', '2020-12-22 21:00:51', '2020-12-22 21:02:13'),
+(11, 9, 8, 1, 'Czytaj więcej', 'Promag - szkolenie', 'Promag - szkolenie', '<p>W czerwcu 2017 roku gościliśmy przedstawicieli firmy Promag, jedynego w Polsce przedstawiciela firmy Blickle, kt&oacute;rzy zaprezentowali swoje rozwiązania a także przeprowadzi szkolenia naszych pracownik&oacute;w, w temacie profesjonalnego doboru system&oacute;w jezdnych do naszych rozwiązań.</p>', '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-22', '2020-12-22 21:13:18', '2020-12-22 21:15:53'),
+(12, 9, 8, 1, 'Czytaj więcej', 'Promag - szkolenie', 'Promag - szkolenie', '<p>W czerwcu 2017 roku gościliśmy przedstawicieli firmy Promag, jedynego w Polsce przedstawiciela firmy Blickle, kt&oacute;rzy zaprezentowali swoje rozwiązania a także przeprowadzi szkolenia naszych pracownik&oacute;w, w temacie profesjonalnego doboru system&oacute;w jezdnych do naszych rozwiązań.</p>', '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-22', '2020-12-22 21:18:11', '2020-12-22 21:18:11'),
+(13, 9, 8, 1, 'Czytaj więcej', 'Promag - szkolenie', 'Promag - szkolenie', '<p>W czerwcu 2017 roku gościliśmy przedstawicieli firmy Promag, jedynego w Polsce przedstawiciela firmy Blickle, kt&oacute;rzy zaprezentowali swoje rozwiązania a także przeprowadzi szkolenia naszych pracownik&oacute;w, w temacie profesjonalnego doboru system&oacute;w jezdnych do naszych rozwiązań.</p>', '', '', '', '', '', '', '', '', 1, 'on', 'off', 'off', '', '2020-12-22', '2020-12-22 21:18:28', '2020-12-22 21:18:28');
 
 --
 -- Wyzwalacze `im_object`
@@ -484,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `im_object_image` (
   PRIMARY KEY (`object_image_id`),
   KEY `object_id` (`object_id`),
   KEY `image_id` (`image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_object_image`
@@ -493,7 +503,10 @@ CREATE TABLE IF NOT EXISTS `im_object_image` (
 INSERT INTO `im_object_image` (`object_image_id`, `object_id`, `image_id`, `position`) VALUES
 (1, 4, 1, 1),
 (3, 5, 2, 1),
-(4, 5, 3, 2);
+(4, 5, 3, 2),
+(5, 11, 4, 1),
+(6, 12, 4, 1),
+(7, 13, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -621,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `im_section` (
 --
 
 INSERT INTO `im_section` (`section_id`, `parent`, `name`, `name_second`, `name_url`, `meta`, `icon`, `class`, `popup`, `position`, `status`, `status_copy`, `status_popup`, `status_parallax`, `status_link`, `description`, `date_create`, `date_modify`) VALUES
-(1, 0, 'home', '', 'home', 'Opis strony głownej', '', '', '', 1, 'on', 'off', 'off', 'off', 'on', '', '2020-12-14 18:35:04', '2020-12-16 15:43:03');
+(1, 0, 'home', '', 'home', 'Opis strony głownej', '', '', '', 1, 'on', 'off', 'off', 'off', 'on', '', '2020-12-14 18:35:04', '2020-12-22 21:56:09');
 
 --
 -- Wyzwalacze `im_section`
@@ -673,7 +686,7 @@ CREATE TABLE IF NOT EXISTS `im_section_object` (
   PRIMARY KEY (`section_object_id`),
   KEY `section_id` (`section_id`),
   KEY `object_id` (`object_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_section_object`
@@ -685,9 +698,14 @@ INSERT INTO `im_section_object` (`section_object_id`, `section_id`, `object_id`)
 (5, 1, 4),
 (10, 1, 2),
 (12, 1, 5),
-(25, 1, 6),
-(26, 1, 7),
-(27, 1, 8);
+(29, 1, 10),
+(30, 1, 6),
+(31, 1, 7),
+(32, 1, 8),
+(33, 1, 11),
+(34, 1, 12),
+(35, 1, 13),
+(36, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -714,14 +732,14 @@ CREATE TABLE IF NOT EXISTS `im_setting` (
 INSERT INTO `im_setting` (`setting_id`, `name`, `system_name`, `content`, `description`, `date_create`, `date_modify`) VALUES
 (1, 'System name', 'name', 'IM-CMS Engine', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
 (2, 'Favicon', 'favicon', 'favicon.png', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
-(3, 'Font', 'font', 'Lato', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
-(4, 'Font size', 'font-size', '15px', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
-(5, 'Google API', 'google-api', '', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
-(6, 'Style map', 'map-style', '', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
+(3, 'Font', 'font', 'Sarabun', '', '2020-12-14 18:32:18', '2020-12-22 21:32:00'),
+(4, 'Font size', 'font-size', '16px', '', '2020-12-14 18:32:18', '2020-12-22 21:32:38'),
+(5, 'Google API', 'google-api', 'AIzaSyBsx3mEXTFuu70t5rvDr7EgZGUDFfzx0DQ', '', '2020-12-14 18:32:18', '2020-12-22 21:04:18'),
+(6, 'Style map', 'map-style', '[\r\n    {\r\n        \"featureType\": \"administrative\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"saturation\": \"-100\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"administrative.province\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"visibility\": \"off\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"landscape\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"saturation\": -100\r\n            },\r\n            {\r\n                \"lightness\": 65\r\n            },\r\n            {\r\n                \"visibility\": \"on\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"poi\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"saturation\": -100\r\n            },\r\n            {\r\n                \"lightness\": \"50\"\r\n            },\r\n            {\r\n                \"visibility\": \"simplified\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"road\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"saturation\": \"-100\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"road.highway\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"visibility\": \"simplified\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"road.arterial\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"lightness\": \"30\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"road.local\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"lightness\": \"40\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"transit\",\r\n        \"elementType\": \"all\",\r\n        \"stylers\": [\r\n            {\r\n                \"saturation\": -100\r\n            },\r\n            {\r\n                \"visibility\": \"simplified\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"water\",\r\n        \"elementType\": \"geometry\",\r\n        \"stylers\": [\r\n            {\r\n                \"hue\": \"#ffff00\"\r\n            },\r\n            {\r\n                \"lightness\": -25\r\n            },\r\n            {\r\n                \"saturation\": -97\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"featureType\": \"water\",\r\n        \"elementType\": \"labels\",\r\n        \"stylers\": [\r\n            {\r\n                \"lightness\": -25\r\n            },\r\n            {\r\n                \"saturation\": -100\r\n            }\r\n        ]\r\n    }\r\n]', '', '2020-12-14 18:32:18', '2020-12-22 21:06:36'),
 (7, 'Footer class', 'class-footer', 'animated slideInUp', '', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
 (8, 'Loading page', 'loading-page', 'background: #000;|top:30%;|color:#fff;font-size: 150px;|fad fa-spinner-third fa-spin|fadeOutUp|1000', 'Background style, icon box style, icon style, icon class, animation, visible time', '2020-12-14 18:32:18', '2020-12-14 18:32:18'),
 (9, 'Debug', 'debug', 'enable', 'enable/disable (status)', '2020-12-14 18:32:18', '2020-12-14 18:38:55'),
-(10, 'Content class', 'class-content', '', '', '2020-12-16 17:42:45', '2020-12-16 17:49:40'),
+(10, 'Content class', 'class-content', 'content-gray', '', '2020-12-16 17:42:45', '2020-12-22 21:58:50'),
 (11, 'Map zoom', 'zoom-map', '16', '15, 16, 17 - probably will be ok', '2020-12-22 17:58:41', '2020-12-22 17:58:41');
 
 --
@@ -901,7 +919,7 @@ CREATE TABLE IF NOT EXISTS `im_type` (
   `date_create` datetime DEFAULT NULL,
   `date_modify` datetime DEFAULT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_type`
@@ -913,7 +931,10 @@ INSERT INTO `im_type` (`type_id`, `name`, `class`, `status`, `description`, `dat
 (3, 'Link', 'col-12 col-lg-2 offset-lg-10', 'on', 'np. \"strefa klienta\"', '2020-12-16 15:49:49', '2020-12-16 16:11:03'),
 (4, 'Logo', 'col-12 col-lg-2 pt-3', 'on', 'grafika wektorowa - SVG', '2020-12-16 16:23:38', '2020-12-16 16:34:07'),
 (5, 'Slider', 'col-12', 'on', 'slider główny - strona główna', '2020-12-16 17:02:41', '2020-12-16 17:03:13'),
-(6, 'Boksy', 'col-12 col-lg-4 mt-2 mb-2 p-2 bg-white', 'on', 'np. na stronie głównej, pod sliderem', '2020-12-16 17:26:18', '2020-12-16 17:43:39');
+(6, 'Boksy', 'col-12 col-lg-4 mt-2 mb-2 p-2 bg-white', 'on', 'np. na stronie głównej, pod sliderem', '2020-12-16 17:26:18', '2020-12-16 17:43:39'),
+(7, 'Treść', 'col-12', 'on', '', '2020-12-22 20:56:42', '2020-12-22 20:56:48'),
+(8, 'Mapa', 'col-12', 'on', '', '2020-12-22 21:00:02', '2020-12-22 21:00:12'),
+(9, 'Aktualności', 'col-12 col sm-6 col-md-4', 'on', '', '2020-12-22 21:09:52', '2020-12-22 21:10:19');
 
 --
 -- Wyzwalacze `im_type`
@@ -955,7 +976,7 @@ CREATE TABLE IF NOT EXISTS `im_type_property` (
   PRIMARY KEY (`type_property_id`),
   KEY `type_id` (`type_id`),
   KEY `property_id` (`property_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `im_type_property`
@@ -969,8 +990,15 @@ INSERT INTO `im_type_property` (`type_property_id`, `type_id`, `property_id`, `c
 (5, 5, 4, 'col-12', '', 1, 'on', '', '2020-12-16 17:03:22', '2020-12-16 17:03:28'),
 (6, 6, 12, 'col-12 text-center mt-1 mb-1', '', 1, 'on', '', '2020-12-16 17:27:41', '2020-12-16 17:38:58'),
 (7, 6, 1, 'col-12 text-center mt-2 mb-2', 'text-uppercase h5', 2, 'on', '', '2020-12-16 17:27:55', '2020-12-16 17:39:58'),
-(8, 6, 2, 'col-12', '', 3, 'on', '', '2020-12-16 17:28:29', '2020-12-16 17:28:37'),
-(9, 6, 5, 'col-12 text-center', 'btn btn-danger', 4, 'on', '', '2020-12-22 19:28:08', '2020-12-22 19:28:38');
+(8, 6, 2, 'col-12 text-justify', '', 3, 'on', '', '2020-12-16 17:28:29', '2020-12-22 21:33:03'),
+(9, 6, 5, 'col-12 text-center', 'btn btn-danger', 4, 'on', '', '2020-12-22 19:28:08', '2020-12-22 19:28:38'),
+(10, 7, 2, 'col-12', '', 1, 'on', '', '2020-12-22 20:56:56', '2020-12-22 20:57:12'),
+(11, 8, 16, 'col-12', '', 1, 'on', '', '2020-12-22 21:00:33', '2020-12-22 21:00:38'),
+(12, 9, 1, 'col-6', '', 1, 'on', '', '2020-12-22 21:10:30', '2020-12-22 21:10:42'),
+(13, 9, 3, 'col-6 text-right', '', 2, 'on', '', '2020-12-22 21:10:50', '2020-12-22 21:12:26'),
+(14, 9, 4, 'col-12', '', 3, 'on', '', '2020-12-22 21:11:05', '2020-12-22 21:11:12'),
+(15, 9, 2, 'col-12 text-justify', '', 4, 'on', '', '2020-12-22 21:11:19', '2020-12-22 21:12:39'),
+(16, 9, 5, 'col-12 text-center', '', 5, 'on', '', '2020-12-22 21:11:36', '2020-12-22 21:11:52');
 
 --
 -- Wyzwalacze `im_type_property`
