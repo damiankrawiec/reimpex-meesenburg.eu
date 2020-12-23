@@ -63,7 +63,29 @@
   }
 }
 .menu {
-  background-color: @light-gray;
+  background-color: @rx-mm-gray;
+  nav {
+    ul {
+      li {
+        border-right: 1px solid @white;
+        padding: 0 5px;
+        a {
+          color: @white;
+          i {
+            font-size: 19px;
+            float: left;
+            padding: 2px 4px 10px 0;
+          }
+          section {
+            float: right;
+          }
+        }
+      }
+      li:last-child {
+        border: none;
+      }
+    }
+  }
 }
 .content-gray {
   background-color: @rx-mm-gray;
@@ -73,6 +95,9 @@
     border: 10px solid @rx-mm-gray;
   }
 }
+.line-height-more {
+  line-height: 32px;
+}
 .map {
   div[title="map"] {
     height: 300px;
@@ -80,4 +105,21 @@
 }
 .im-footer {
   color: @white;
+}
+//Object
+.news {
+  .image {
+    > div {
+      padding-top: 20px;
+      border-top: 1px solid @black;
+    }
+  }
+  .text {
+    > div {
+      border-bottom: 1px solid @black;
+    }
+  }
+  .btn{
+    
+  }
 }

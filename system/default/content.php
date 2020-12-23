@@ -43,15 +43,15 @@ $label = $object->getAllLabel();
 
         <?php $object->display($sectionData['id'], $label['content-top']); ?>
 
-        <?php $object->display($sectionData['id'], $label['content-center']); ?>
-
     </div>
 
 </div>
 
-<div<?php echo $divClass; ?>>
+    <div<?php echo $divClass; ?>>
 
-    <?php $object->display($sectionData['id'], $label['content-bottom']); ?>
+        <?php $object->display($sectionData['id'], $label['content-center']); ?>
+
+        <?php $object->display($sectionData['id'], $label['content-bottom']); ?>
 
     <?php
 
